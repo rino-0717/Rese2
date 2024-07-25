@@ -1,0 +1,116 @@
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.reservation-status {
+    width: 700px;
+}
+
+.favorite-shops {
+    margin-bottom: 40px;
+}
+
+.reservation-card,
+.shop-card {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reservation-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.reservation-details p {
+    margin: 5px 0;
+}
+
+.shop-list {
+    display: flex;
+    gap: 20px;
+}
+
+.shop-card {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    position: relative;
+}
+
+.shop-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.shop-info {
+    margin-top: 10px;
+}
+
+.shop-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.shop-info p {
+    margin: 5px 0;
+}
+
+.details-button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.like-button img {
+    width: 30px;
+    height: 30px;
+}
