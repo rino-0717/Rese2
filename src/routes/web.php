@@ -32,7 +32,7 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 //メニュー
 Route::get('/menu', [MenuController::class, 'show'])->name('menu');
-Route::get('/menu2', [MenuController::class, 'show'])->name('menu2');
+Route::get('/menu2', [Menu2Controller::class, 'show'])->name('menu2');
 
 //飲食店一覧
 Route::get('/', [ShopController::class, 'index'])->name('shop');
@@ -44,7 +44,7 @@ Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search
 
 // 予約
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
-Route::get('/done',[ReservationController::class, 'store'])->name('done');
+Route::get('/done',[ReservationController::class, 'completePage'])->name('done');
 Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
 //マイページ

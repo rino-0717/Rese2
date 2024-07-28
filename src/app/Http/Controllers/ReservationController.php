@@ -12,6 +12,7 @@ class ReservationController extends Controller
     public function store(ReservationRequest $request)
     {
         $user = Auth::user();
+        // dd($user);
         // バリデーション
         $request->validate([
             'shop_id' => 'required|integer',
@@ -19,17 +20,23 @@ class ReservationController extends Controller
             'time' => 'required',
             'number_of_people' => 'required|integer',
         ]);
-
+        // dd($request);
         // 予約の保存
         $reservation = $user->reservations()->create([
+            'user_id' => $user->id,
             'shop_id' => $request->shop_id,
             'date' => $request->date,
             'time' => $request->time,
             'number_of_people' => $request->number_of_people,
         ]);
 
-        // doneビューにリダイレクト
         return redirect()->route('done');
+    }
+
+    // 完了ページ表示
+    public function completePage()
+    {
+        return view('/done');
     }
 
     public function destroy($id)

@@ -2,7 +2,6 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/shop.css') }}">
-    <link rel="stylesheet" href="{{ asset('images/like.png') }}">
 @endsection
 
 @section('content')
@@ -20,8 +19,8 @@
                             @else
                                 <button type="button" class="details-button" onclick="location.href='{{ route('login.create') }}'">詳しく見る</button>
                             @endif
-                            <button style="background-color: white;" type="submit" class="like_btn" data-like="like">
-                                <img src="{{ asset('images/like.png') }}" alt="Like Icon" style="width: 30px; height: 30px;">
+                            <button style="background-color: white;" type="button" class="like_btn" data-like="like">
+                                <img src="{{ asset('images/like.png') }}" alt="Like Icon" class="like-icon" data-liked="false" style="width: 30px; height: 30px;">
                             </button>
                         </div>
                     </div>
@@ -32,5 +31,9 @@
 @endsection
 
 @section('scripts')
+    <script>
+        const likeImageUrl = "{{ asset('images/like.png') }}";
+        const likeRedImageUrl = "{{ asset('images/like_red.png') }}";
+    </script>
     <script src="{{ asset('js/like.js') }}"></script>
 @endsection

@@ -35,12 +35,28 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
-        $shops = Shop::where('name', 'LIKE', "%{$query}%")
-                    ->orWhere('area', 'LIKE', "%{$query}%")
-                    ->orWhere('genre', 'LIKE', "%{$query}%")
-                    ->get();
+        $query = Shop::query();
 
-        return view('shop', compact('shops'));
+        if ($request->filled('area') && $request->input('area') !== 'all') {
+            $query->where('area', $request->input('area'));
+        }
+
+        if ($request->filled('genre') && $request->input('genre') !== 'all') {
+            $query->where('genre', $request->input('genre'));
+        }
+
+        if ($request->filled('query')) {
+            $query->where(function($q) use ($request) {
+                $q->where('name', 'LIKE', '%' . $request->input('query') . '%')
+                ->orWhere('area', 'LIKE', '%' . $request->input('query') . '%')
+                ->orWhere('genre', 'LIKE', '%' . $request->input('query') . '%');
+            });
+        }
+
+        $shops = $query->distinct()->get();
+        $areas = Shop::select('area')->distinct()->get();
+        $genres = Shop::select('genre')->distinct()->get();
+
+        return view('shop', compact('shops', 'areas', 'genres'));
     }
 }
