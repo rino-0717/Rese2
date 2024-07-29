@@ -45,7 +45,9 @@ Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search
 
 // 予約
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
-Route::get('/done',[ReservationController::class, 'completePage'])->name('done');
+Route::get('/done', function () {
+    return view('done');
+})->name('done');
 Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
 // いいね
