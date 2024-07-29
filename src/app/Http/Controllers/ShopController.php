@@ -54,6 +54,7 @@ class ShopController extends Controller
         }
 
         $shops = $query->distinct()->get();
+
         $areas = Shop::select('area')->distinct()->get();
         $genres = Shop::select('genre')->distinct()->get();
 

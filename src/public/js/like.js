@@ -3,17 +3,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     likeButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const icon = this.querySelector('.like-icon');
-            const isLiked = icon.getAttribute('data-liked') === 'true';
-            console.log('Button clicked. Current state:', isLiked); // デバッグ用
-            if (isLiked) {
-                icon.src = likeImageUrl;
-                icon.setAttribute('data-liked', 'false');
-            } else {
-                icon.src = likeRedImageUrl;
-                icon.setAttribute('data-liked', 'true');
-            }
-            console.log('New state:', icon.getAttribute('data-liked')); // デバッグ用
+            const shopId = this.getAttribute('data-shop-id');
+            const likeIcon = this.querySelector('.like-icon');
+            const isLiked = likeIcon.getAttribute('data-liked') === 'true';
+
+            // Send AJAX request to server to update like status
+            fetch(`/like/${shopId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ liked: !isLiked })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Toggle like status
+                    if (data.liked) {
+                        likeIcon.src = likeRedImageUrl;
+                        likeIcon.setAttribute('data-liked', 'true');
+                    } else {
+                        likeIcon.src = likeImageUrl;
+                        likeIcon.setAttribute('data-liked', 'false');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         });
     });
 });

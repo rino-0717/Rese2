@@ -5,6 +5,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Menu2Controller;
@@ -47,5 +48,8 @@ Route::post('/reservation', [ReservationController::class, 'store'])->name('rese
 Route::get('/done',[ReservationController::class, 'completePage'])->name('done');
 Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
+// いいね
+Route::post('/like/{shopId}', [LikeController::class, 'toggleLike'])->middleware('auth');
+
 //マイページ
-Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+Route::get('/mypage', [MypageController::class, 'myPage'])->name('mypage');

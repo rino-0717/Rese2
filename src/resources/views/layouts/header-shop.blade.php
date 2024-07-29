@@ -54,6 +54,10 @@
         @yield('content')
     </main>
     @yield('content')
+    <script>
+        const likeImageUrl = "{{ asset('images/like.png') }}";
+        const likeRedImageUrl = "{{ asset('images/like_red.png') }}";
+    </script>
     <script src="{{ asset('js/like.js') }}"></script>
     @yield('scripts')
 </body>

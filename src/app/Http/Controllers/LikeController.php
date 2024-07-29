@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
-use App\Models\Shop;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function index()
+    public function toggleLike(Request $request, $shopId)
     {
         $user = Auth::user();
-        $reservations = $user->reservations()->with('shop')->get();
-        $likedby = $user->likedby ()->with('shop')->get();
-        $likes = $user->likes()->with('shop')->get(); // likes 変数を定義
+        $like = Like::where('user_id', $user->id)->where('shop_id', $shopId)->first();
 
-        return view('mypage', compact('reservations', 'favorites', 'likes'));
+        if ($like) {
+            $like->delete();
+            return response()->json(['success' => true, 'liked' => false]);
+        } else {
+            Like::create(['user_id' => $user->id, 'shop_id' => $shopId]);
+            return response()->json(['success' => true, 'liked' => true]);
+        }
     }
 }

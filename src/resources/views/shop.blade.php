@@ -19,7 +19,7 @@
                             @else
                                 <button type="button" class="details-button" onclick="location.href='{{ route('login.create') }}'">詳しく見る</button>
                             @endif
-                            <button style="background-color: white;" type="button" class="like_btn" data-like="like">
+                            <button style="background-color: white;" type="button" class="like_btn" data-shop-id="{{ $shop->id }}">
                                 <img src="{{ asset('images/like.png') }}" alt="Like Icon" class="like-icon" data-liked="false" style="width: 30px; height: 30px;">
                             </button>
                         </div>
