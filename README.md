@@ -1,7 +1,8 @@
 # アプリケーション名
 Rese
 - 概要説明：ある企業のグループ会社の飲食店予約サービス
-![打刻画面](https://github.com/rino-0717/Attendance-Record/assets/157961363/64b513da-c0e6-4a5b-aa78-21eaee464384)
+![飲食店一覧]<img width="1437" alt="shop_all" src="https://github.com/user-attachments/assets/304a2b5b-a7a7-4dfd-990a-589bf77235f3">
+
 
 ## 作成した目的
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたいため
@@ -24,14 +25,15 @@ Rese
 - Mysql 8.0.26
 
 ## テーブル設計図
-![テーブル仕様書](https://github.com/rino-0717/Attendance-Record/assets/157961363/309410e4-bf87-4e3c-9245-54e3fffc44fe)
+![テーブル仕様書](https://github.com/user-attachments/assets/7c96b9f1-211d-4a99-9c4c-148a33675a5d)
 
 ## ER図
-![ER図](https://github.com/rino-0717/Attendance-Record/assets/157961363/da799f1d-313b-4c77-89c9-1eb551435a67)
+![ER図](https://github.com/user-attachments/assets/f3a83dcd-01d1-4880-8baf-0a966f63c0ef)
+
 
 # 環境構築
 Dockerビルド
-- 1.git clone git@github.com:rino-0717/Attendance-Record.git
+- 1.git clone git@github.com:rino-0717/Rese2.git
 - 2.DockerDesktopアプリを立ち上げる
 - 3.docker-compose up -d --build
 
