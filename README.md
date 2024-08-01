@@ -8,11 +8,13 @@ Rese
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたいため
 
 ## アプリケーションURL
-- 会員登録：http://localhost:90/register
-- ログイン：http://localhost:90/login
-- 飲食店一覧：http://localhost:90/
-- 飲食店詳細：http://localhost:90/detail{shop_id}
-- マイページ：http://localhost:90/mypage
+- 会員登録：http://localhost:92/register
+- 登録完了：http://localhost:92/thanks
+- ログイン：http://localhost:92/login
+- 飲食店一覧：http://localhost:92/
+- 飲食店詳細：http://localhost:92/detail{shop_id}
+- 予約完了：http://localhost:92/done
+- マイページ：http://localhost:92/mypage
 
 ## 他のリポジトリ
 
