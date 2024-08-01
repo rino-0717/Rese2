@@ -84,7 +84,7 @@ main {
 
 .shop-detail {
     width: 60%;
-    margin-right: 20px;
+    margin-right: 50px;
     flex: 1;
 }
 
@@ -129,12 +129,11 @@ main {
     height: 35%;
     background-color: #3477e3;
     color: #fff;
-
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-left: 20px;
+    margin-left: 50px;
 }
 
 

@@ -21,11 +21,6 @@ class Shop extends Model
         'introduction',
     ];
 
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class, 'shop_id');
-    }
-
     public function reservations()
     {
         return $this->hasMany(Reservation::class);

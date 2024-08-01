@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Shop;
+use App\Models\Reservation;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -38,10 +41,5 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
-    }
-
-    public function likedby()
-    {
-        return $this->belongsToMany(User::class, 'likes', 'shop_id', 'user_id');
     }
 }

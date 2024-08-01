@@ -8,6 +8,6 @@
     <div class="container">
         <h1>予約が完了しました</h1>
         <p>ご予約ありがとうございます。</p>
-        <a href="{{ route('shop') }}" class="button">戻る</a>
+        <a href="{{ route('mypage') }}" class="btn btn-primary">戻る</a>
     </div>
 @endsection
