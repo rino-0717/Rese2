@@ -45,11 +45,11 @@ Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search
 
 // 予約
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
-Route::get('/done', [ReservationController::class, 'done'])->name('done');
+Route::get('/done', [ReservationController::class, 'store'])->name('done');
 Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
 
 // いいね
 Route::post('/like/{shopId}', [LikeController::class, 'toggleLike'])->middleware('auth');
 
 //マイページ
-Route::get('/mypage', [MypageController::class, 'myPage'])->name('mypage');
+Route::get('/mypage', [MypageController::class, 'index'])->name('mypage')->middleware('auth');

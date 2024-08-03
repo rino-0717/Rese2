@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReservationRequest;
+use Illuminate\Http\Request;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,18 +14,13 @@ class ReservationController extends Controller
     {
         // 予約の保存
         Reservation::create([
-            'shop_id' => $request->shop_id,
-            'user_id' => auth()->id(),
-            'date' => $request->date,
-            'time' => $request->time,
-            'number_of_people' => $request->number_of_people,
+            'date' => $request['date'],
+            'time' => $request['time'],
+            'number_of_people' => $request['number_of_people'],
+            'user_id' => Auth::id(),
+            'shop_id' => $request['shop_id'],
         ]);
 
-        return redirect()->route('done')->with('success', '予約が完了しました。');
-    }
-
-    public function done()
-    {
         return view('done');
     }
 
@@ -36,3 +32,9 @@ class ReservationController extends Controller
         return redirect()->route('mypage')->with('success', '予約が削除されました。');
     }
 }
+
+
+
+
+
+

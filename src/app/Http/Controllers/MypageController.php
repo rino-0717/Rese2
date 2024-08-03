@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
-use App\Models\Like;
 
 class MypageController extends Controller
 {
-    public function myPage()
+    public function index()
     {
         $user = Auth::user();
-        $reservations = $user->reservations;
-        $likes = $user->likes;
+        $reservations = Reservation::where('user_id', $user->id)->get();
 
-        return view('mypage', compact('user', 'reservations', 'likes'));
+        return view('mypage', compact('user', 'reservations'));
     }
 }
