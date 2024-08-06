@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\MypageController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Menu2Controller;
 
@@ -52,4 +52,4 @@ Route::delete('/reservations/{reservation}', [ReservationController::class, 'des
 Route::post('/like/{shopId}', [LikeController::class, 'toggleLike'])->middleware('auth');
 
 //マイページ
-Route::get('/mypage', [MypageController::class, 'index'])->name('mypage')->middleware('auth');
+Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage')->middleware('auth');

@@ -18,7 +18,7 @@
                 @csrf
                 <button type="submit" class="logout-button">Logout</button>
             </form>
-            <a href="{{ route('mypage') }}">Mypage</a>
+            <a href="{{ route('myPage') }}">MyPage</a>
         </div>
     </div>
 </body>

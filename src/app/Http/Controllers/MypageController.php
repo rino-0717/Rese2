@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 
-class MypageController extends Controller
+class MyPageController extends Controller
 {
     public function index()
     {

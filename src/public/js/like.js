@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const likeButtons = document.querySelectorAll('.like_btn');
+    const likeImageUrl = '/images/like.png'; // 通常のいいねアイコンのパス
+    const likeRedImageUrl = '/images/like_red.png'; // 赤いいいねアイコンのパス
 
     likeButtons.forEach(button => {
         button.addEventListener('click', function() {
