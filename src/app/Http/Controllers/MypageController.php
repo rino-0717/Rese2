@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Reservation;
 
 class MyPageController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        $reservations = Reservation::where('user_id', $user->id)->get();
+        // ここで予約情報やお気に入り店舗の取得ロジックを実装します
+        // 例：
+        // $reservations = $user->reservations;
+        // $favoriteShops = $user->favoriteShops;
 
-        return view('mypage', compact('user', 'reservations'));
+        return view('mypage', [
+            'user' => $user,
+            // 'reservations' => $reservations,
+            // 'favoriteShops' => $favoriteShops,
+        ]);
     }
 }
