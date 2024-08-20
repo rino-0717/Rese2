@@ -52,5 +52,4 @@ Route::delete('/reservations/{reservation}', [ReservationController::class, 'des
 Route::post('/like/{shopId}', [LikeController::class, 'toggleLike'])->middleware('auth');
 
 // マイページ
-Route::post('/my-page', [MyPageController::class, 'index'])->name('my-page');
-Route::get('/my-page', [MyPageController::class, 'index'])->name('my-page');
+Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage')->middleware('auth');
