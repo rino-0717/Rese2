@@ -1,83 +1,62 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マイページ - Rese</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .logo { font-size: 24px; font-weight: bold; color: #2196F3; }
-        h1 { font-size: 24px; margin-bottom: 20px; }
-        .content { display: flex; gap: 20px; }
-        .reservations, .favorite-shops { flex: 1; }
-        .reservation-card { background-color: #2196F3; color: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
-        .reservation-card h3 { display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
-        .close-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
-        .shop-cards { display: flex; gap: 20px; flex-wrap: wrap; }
-        .shop-card { background-color: white; border-radius: 5px; overflow: hidden; width: calc(50% - 10px); }
-        .shop-card img { width: 100%; height: 200px; object-fit: cover; }
-        .shop-info { padding: 15px; }
-        .shop-info h3 { margin-top: 0; }
-        .shop-info p { margin: 5px 0; }
-        .button-group { display: flex; justify-content: space-between; margin-top: 10px; }
-        .details-btn, .favorite-btn { padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; }
-        .details-btn { background-color: #2196F3; color: white; }
-        .favorite-btn { background-color: white; color: red; border: 1px solid red; }
-    </style>
-</head>
-<body>
+@extends('layouts.header')
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+@endsection
+
+@section('content')
     <div class="container">
-        <div class="header">
-            <div class="logo">Rese</div>
-        </div>
-        
-        <h1>testさん</h1>
-        
-        <div class="content">
-            <div class="reservations">
+        <h1>{{ $user->name }}さん</h1>
+        <div class="main-content">
+            <div class="reservation-status">
                 <h2>予約状況</h2>
-                <div class="reservation-card">
-                    <h3>
-                        予約1
-                        <button class="close-btn">×</button>
-                    </h3>
-                    <p>Shop: 仙人</p>
-                    <p>Date: 2021-04-01</p>
-                    <p>Time: 17:00</p>
-                    <p>Number: 1人</p>
-                </div>
+                @if($reservations->isEmpty())
+                    <p>予約がありません。</p>
+                @else
+                    @foreach ($reservations as $reservation)
+                        <div class="reservation-card">
+                            <div class="reservation-header">
+                                <span class="reservation-title">予約{{ $loop->iteration }}</span>
+                                <button class="delete-button" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $reservation->id }}').submit();">×</button>
+                                <form id="delete-form-{{ $reservation->id }}" action="{{ route('reservation.destroy', $reservation->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </div>
+                            <div class="reservation-details">
+                                <p>Shop: {{ $reservation->shop->name }}</p>
+                                <p>Date: {{ $reservation->date }}</p>
+                                <p>Time: {{ $reservation->time }}</p>
+                                <p>Number: {{ $reservation->number_of_people }}人</p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
-            
             <div class="favorite-shops">
                 <h2>お気に入り店舗</h2>
-                <div class="shop-cards">
-                    <div class="shop-card">
-                        <img src="https://via.placeholder.com/300x200.png?text=仙人" alt="仙人">
-                        <div class="shop-info">
-                            <h3>仙人</h3>
-                            <p>#東京都 #寿司</p>
-                            <div class="button-group">
-                                <button class="details-btn">詳しくみる</button>
-                                <button class="favorite-btn">♥</button>
+                <div class="shop-list">
+                    @foreach ($likes as $like)
+                        <div class="shop-card">
+                            <img src="{{ $like->shop->image_url }}" alt="{{ $like->shop->name }}">
+                            <div class="shop-info">
+                                <h3>{{ $like->shop->name }}</h3>
+                                <p>#{{ $like->shop->area }} #{{ $like->shop->genre }}</p>
+                                <button type="button" class="details-button" onclick="location.href='{{ route('shop', $like->shop->id) }}'">詳しく見る</button>
+                                <button class="like-button" onclick="event.preventDefault(); document.getElementById('like-form-{{ $like->shop->id }}').submit();">
+                                    <img src="{{ asset('images/like.png') }}" alt="Like Icon">
+                                </button>
+                                <form id="like-form-{{ $like->shop->id }}" action="{{ route('like', $like->shop->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="shop-card">
-                        <img src="https://via.placeholder.com/300x200.png?text=牛助" alt="牛助">
-                        <div class="shop-info">
-                            <h3>牛助</h3>
-                            <p>#大阪府 #焼肉</p>
-                            <div class="button-group">
-                                <button class="details-btn">詳しくみる</button>
-                                <button class="favorite-btn">♥</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/unlike.js') }}"></script>
+@endsection
