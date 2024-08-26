@@ -17,8 +17,8 @@ class MyPageController extends Controller
         $likes = $user->likes;
         return view('mypage', [
             'user' => $user,
-            'reservations'=> $user,
-            'likes'=> $user,
+            'reservations'=> $reservations,
+            'likes'=> $likes,
         ]);
     }
 }
